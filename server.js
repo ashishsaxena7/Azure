@@ -17,7 +17,7 @@ const {
   uploadStreamToBlockBlob
 } = require('@azure/storage-blob');
 
-//const cosmos = require('@azure/cosmos')
+const cosmos = require('@azure/cosmos')
 const app = express();
 const inMemoryStorage = multer.memoryStorage();
 const uploadStrategy = multer({ storage: inMemoryStorage }).single('image');
