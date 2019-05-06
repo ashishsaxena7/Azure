@@ -18,6 +18,7 @@ const {
 } = require('@azure/storage-blob');
 
 const cosmos = require('@azure/cosmos')
+const CosmosClient = cosmos.CosmosClient
 const app = express();
 const inMemoryStorage = multer.memoryStorage();
 const uploadStrategy = multer({ storage: inMemoryStorage }).single('image');
@@ -31,7 +32,7 @@ app.use(express.static('.'))
 //app.use(fileUpload());
 
 
-const nosql = new cosmos({ endpoint: process.env.DATABASE_URI, auth: {
+const nosql = new CosmosClient ({ endpoint: process.env.DATABASE_URI, auth: {
   masterKey: process.env.DATABASE_KEY
 }})
 // nosql.database('testing123').container('testplease2').items.readAll().toArray().then(res => console.log(res.result))
