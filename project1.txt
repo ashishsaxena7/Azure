@@ -1,0 +1,38 @@
+#cloud-config
+
+package_update: true
+packages:
+    - build-essential
+    - curl
+    - file
+    - git
+    - nodejs
+    - npm
+write_files:
+    - owner: 'ashish:ashish'
+      path: '/home/ashish/server.js'
+      content: |
+        const http = require('http');
+        const hostname = '0.0.0.0';
+        const port = 8080;
+        const server = http.createServer((req, res) => {
+            res.statusCode = 200;
+            res.setHeader('Content-Type', 'text/html');
+            res.end('Hello World\n');
+        });
+
+        server.listen(port, hostname, () => {
+            console.log(`Server running at http://${hostname}:${port}/`);
+        });
+
+runcmd:
+    - sudo mkfs -t ext4 /dev/sdc
+    - sudo mkdir /media/project1
+    - sudo mount /dev/sdc /media/project1
+    - cd /home/ashish
+    - sudo mv server.js /media/project1/
+    - cd /media/project1
+    - sudo npm init -y
+    - sudo npm install express
+    - npm install --save express-fileupload
+    - node server.js

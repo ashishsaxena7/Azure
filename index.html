@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ash's Image Warehouse</title>
+</head>
+<body>
+    <header>Upload pictures here</header>
+    <form ref='uploadForm' id='uploadForm' action='/upload' method='post' encType="multipart/form-data">
+      <input type="file" name="image">
+      <button type='submit' value='Add'>Add Picture</button>
+
+  </form> 
+
+  <div id="album"></div>
+  <script src="client.js"></script>
+</body>
+</html>
